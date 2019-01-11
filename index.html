@@ -1,0 +1,138 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>海宁公交byHNMRXZ</title>
+    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/> 
+    <style type="text/css">
+       html,body,#container{
+           height:100%;
+       }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript"
+            src="https://webapi.amap.com/maps?v=1.4.11&key=1fe93698c8b25bd91836aebb27801b96&plugin=AMap.LineSearch"></script>
+<script language="javascript">
+    /*
+     * 该示例主要流程分为三个步骤
+     * 1. 首先调用公交路线查询服务(lineSearch)
+     * 2. 根据返回结果解析，输出解析结果(lineSearch_Callback)
+     * 3. 在地图上绘制公交线路()
+     */
+    var map = new AMap.Map("container", {
+        resizeEnable: true,
+        center: [120.6803,30.5115],//地图中心点
+        zoom: 13, //地图显示的缩放级别
+		//mapStyle: 'amap://styles/ee7d271c0993fd10be7421b8d3f81506'
+    });
+    var linesearch;
+	var n = new Array("1","2","2路支线","3","5","6","7","8","9","9路支线","10","11","12","15","16","17","18","19","20","21","21路支","22","23","25","26","27","29","30","31","33","35","37","91","92","93","96","97","99","918","922","933","101","103","105","106","107","108","109","113","123","128","130","131","181","187","188","198","202","203","205","206","208","210","212","216","218","220","222","225","301","302","305","306","307","308","309","310","311","312","313","316路东线","316路西线","317","318","326","322","324","325","328","330","529","529路区间","530","531","534","868路/K868路","868路/K868路区间","868路/K868路(学院线)","868路/868路专线");
+    /*公交线路查询*/
+    function lineSearch(l) {
+        //实例化公交线路查询类，只取回一条路线
+        if(!linesearch){
+            linesearch = new AMap.LineSearch({
+                pageIndex: 1,
+                city: '嘉兴',
+                pageSize: 100,
+                extensions: 'all'
+            });
+        }
+
+        linesearch.search(l, function(status, result) {
+            //map.clearMap()
+            if (status === 'complete' && result.info === 'OK') {
+                lineSearch_Callback(result);
+            } else {
+                alert(result);
+            }
+        });
+    }
+    function lineSearch2(l) {
+        //实例化公交线路查询类，只取回一条路线
+        if(!linesearch){
+            linesearch = new AMap.LineSearch({
+                pageIndex: 1,
+                city: '杭州',
+                pageSize: 100,
+                extensions: 'all'
+            });
+        }
+
+        linesearch.search(l, function(status, result) {
+            //map.clearMap()
+            if (status === 'complete' && result.info === 'OK') {
+                lineSearch_Callback(result);
+            } else {
+                alert(result);
+            }
+        });
+    }	
+    /*公交路线查询服务返回数据解析概况*/
+    function lineSearch_Callback(data) {
+        var lineArr = data.lineInfo;
+        var lineNum = data.lineInfo.length;
+        if (lineNum == 0) {
+        } else {
+            for (var i = 0; i < lineNum; i++) {
+                var pathArr = lineArr[i].path;
+                var stops = lineArr[i].via_stops;
+                var startPot = stops[0].location;
+                var endPot = stops[stops.length - 1].location;
+                if (i < 5)
+                drawbusLine(startPot, endPot, pathArr);
+            
+            }
+        }
+    }
+    /*绘制路线*/
+    function drawbusLine(startPot, endPot, BusArr) {
+        //绘制起点，终点
+        new AMap.Marker({
+            map: map,
+            position: startPot, //基点位置
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/start.png",
+            zIndex: 10
+        });
+        new AMap.Marker({
+            map: map,
+            position: endPot, //基点位置
+            icon: "https://webapi.amap.com/theme/v1.3/markers/n/end.png",
+            zIndex: 10
+        });
+		var i = 0;
+		var str = "#";
+		var random = 0;
+		var aryNum = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"];
+ 
+		for(i = 0; i < 6; i++)
+		{
+			random = parseInt(Math.random() * 16);
+			str += aryNum[random];
+		}
+        //绘制乘车的路线
+        busPolyline = new AMap.Polyline({
+            map: map,
+            path: BusArr,
+            
+            strokeColor: str,//线颜色
+            strokeOpacity: 0.8,//线透明度
+            isOutline:true,
+            outlineColor:'white',
+            strokeWeight: 4//线宽
+        });
+        map.setFitView();
+    }
+	for (var i = 1; i <= 98; i++) {
+		lineSearch('海宁'+n[i]);
+		}
+	lineSearch('海盐K178路');
+	lineSearch('189路/K189路');
+	lineSearch2('523路');
+</script>
+</body>
+</html>
