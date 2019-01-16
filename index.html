@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>海宁公交线路查询byHNMRXZ</title>
+    <title>海宁公交线路查询©HNMRXZ</title>
     <style type="text/css">
        html,body,#container{
            height:100%;
@@ -440,11 +440,112 @@
 		  width: 16px;
 		  height: 16px;
 		}
+		.input-item2 {
+		  position: relative;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -ms-flex-wrap: wrap;
+		  flex-wrap: wrap;
+		  -ms-flex-align: center;
+		  align-items: center;
+		  width: 100%;
+		  height: 3rem;
+		}
+
+		.input-item2:last-child {
+		  margin-bottom: 0;
+		}
+
+		.input-item2>select, .input-item>input[type=text], .input-item>input[type=date] {
+		  position: relative;
+		  -ms-flex: 1 1 auto;
+		  flex: 1 1 auto;
+		  width: 1%;
+		  margin-bottom: 0;
+		}
+
+		.input-item2>select:not(:last-child), .input-item>input[type=text]:not(:last-child), .input-item>input[type=date]:not(:last-child) {
+		  border-top-right-radius: 0;
+		  border-bottom-right-radius: 0
+		}
+
+		.input-item2>select:not(:first-child), .input-item>input[type=text]:not(:first-child), .input-item>input[type=date]:not(:first-child) {
+		  border-top-left-radius: 0;
+		  border-bottom-left-radius: 0
+		}
+
+		.input-item2-prepend {
+		  margin-right: -1px;
+		}
+
+		.input-item2-text, input[type=text],input[type=date], select {
+		  height: calc(2.2rem + 2px);
+		}
+
+		.input-item2-text {
+		  width: 6rem;
+		  text-align: justify;
+		  padding: 0.4rem 0.7rem;
+		  display: inline-block;
+		  text-justify: distribute-all-lines;
+		  /*ie6-8*/
+		  text-align-last: justify;
+		  /* ie9*/
+		  -moz-text-align-last: justify;
+		  /*ff*/
+		  -webkit-text-align-last: justify;
+		  /*chrome 20+*/
+		  -ms-flex-align: center;
+		  align-items: center;
+		  margin-bottom: 0;
+		  font-size: 1rem;
+		  font-weight: 400;
+		  line-height: 1.5;
+		  color: #495057;
+		  text-align: center;
+		  white-space: nowrap;
+		  background-color: #e9ecef;
+		  border: 1px solid #ced4da;
+		  border-radius: .25rem;
+		  border-bottom-right-radius: 0;
+		  border-top-right-radius: 0;
+		}
+
+		.input-item2-text input[type=checkbox], .input-item-text input[type=radio] {
+		  margin-top: 0
+		}
+		.input-card2 {
+		  display: flex;
+		  flex-direction: column;
+		  min-width: 0;
+		  word-wrap: break-word;
+		  background-color: #fff;
+		  background-clip: border-box;
+		  border-radius: .25rem;
+		  width: 22rem;
+		  border-width: 0;
+		  border-radius: 0.4rem;
+		  box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+		  position: fixed;
+		  bottom: 1rem;
+		  right: 1rem;
+		  -ms-flex: 1 1 auto;
+		  flex: 1 1 auto;
+		  padding: 0.75rem 1.25rem;
+		}
     </style>
 </head>
 <body>
 <div id="container"></div>
-<div class="input-card" style='width:36rem;height:30rem;'>
+<div class="input-card2" style='width:18rem;display:2'>
+    <label style='color:grey'>公交线路查询</label>
+    <div class="input-item2">
+            <div class="input-item2-prepend"><span class="input-item2-text" >线路名称</span></div>
+            <input id='BusLineName' class="btn" type="text" value='' >
+    </div>
+    <input id="search" type="button" class="btn" value="查询" />
+</div>
+<div class="input-card" style='width:36rem;height:30rem;display:1'>
     <label style='color:grey'>公交线路查询</label>
     <div class="input-item">
             <div class="input-item-prepend" style='width:100%;'><span class="input-item-text" >城市公交</span></div>
@@ -553,7 +654,26 @@
     </div>
     <input id="search" type="button" class="btn" value="查询" />
 </div>
-
+<script type="text/javascript">
+             
+              function browserRedirect() {
+                var sUserAgent = navigator.userAgent.toLowerCase();
+                var bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+                var bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+                var bIsMidp = sUserAgent.match(/midp/i) == "midp";
+                var bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+                var bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+                var bIsAndroid = sUserAgent.match(/android/i) == "android";
+                var bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+                var bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+                if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+                    $("input-card2").css("display","2");
+					}
+				else {
+					$("input-card").css("display","1");
+					}
+				}
+</script>
 <script type="text/javascript"
             src="https://webapi.amap.com/maps?v=1.4.11&key=1fe93698c8b25bd91836aebb27801b96&plugin=AMap.LineSearch"></script>
 <script language="javascript">
