@@ -4,16 +4,556 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>海宁公交byHNMRXZ</title>
-    <link rel="stylesheet" href="https://a.amap.com/jsapi_demos/static/demo-center/css/demo-center.css"/> 
+    <title>公交线路查询</title>
     <style type="text/css">
        html,body,#container{
            height:100%;
        }
+	   html {
+		  font-size: 12px;
+		}
+		.amap-copyright{
+		  box-sizing: content-box
+		}
+		* {
+		  box-sizing: border-box
+		}
+		.input-textarea{
+		   color:grey;
+		   height:8em;
+		   overflow:auto;
+		   border-radius:0.4rem;
+		   border:1px solid #ced4da;
+		   margin-bottom:1rem;
+		}
+		body {
+		  margin: 0;
+		  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+		  line-height: 1.5;
+		  font-weight: 300;
+		  color: #111213;
+		}
+
+		hr {
+		  margin: 0.5rem 0;
+		  box-sizing: content-box;
+		  height: 0;
+		  overflow: visible;
+		  border: 0;
+		  border-top: 1px solid rgba(0, 0, 0, .1)
+		}
+
+		p {
+		  margin-top: 0;
+		  margin-bottom: 0;
+		}
+
+		label {
+		  display: inline-block;
+		  margin-bottom: 0.4rem;
+		}
+
+		label, .btn {
+		  margin-left: 0;
+		  font-size: 1rem;
+		}
+
+		button, input, select {
+		  margin: 0;
+		  font-family: inherit;
+		  font-size: inherit;
+		  line-height: inherit;
+		  overflow: visible;
+		  text-transform: none
+		}
+
+		[type=button]::-moz-focus-inner, [type=reset]::-moz-focus-inner, [type=submit]::-moz-focus-inner, button::-moz-focus-inner {
+		  padding: 0;
+		  border-style: none;
+		}
+
+		input[type=checkbox], input[type=radio] {
+		  box-sizing: border-box;
+		  padding: 0;
+		  -webkit-box-sizing: border-box;
+		  box-sizing: border-box;
+		  padding: 0;
+		  margin: 0 0.5rem 0 0;
+		}
+
+		h4 {
+		  font-family: inherit;
+		  line-height: 1.8;
+		  font-weight: 300;
+		  color: inherit;
+		  font-size: 1.1rem;
+		  margin-top: 0;
+		  margin-bottom: .5rem
+		}
+
+		.btn {
+		  display: inline-block;
+		  font-weight: 400;
+		  text-align: center;
+		  white-space: nowrap;
+		  vertical-align: middle;
+		  -webkit-user-select: none;
+		  -moz-user-select: none;
+		  -ms-user-select: none;
+		  user-select: none;
+		  border: 1px solid transparent;
+		  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+		  background-color: transparent;
+		  background-image: none;
+		  color: #25A5F7;
+		  border-color: #25A5F7;
+		  line-height: 1.5;
+		  border-radius: 1rem;
+		  -webkit-appearance: button;
+		  cursor:pointer;
+		}
+
+		.btn:hover {
+		  color: #fff;
+		  background-color: #25A5F7;
+		  border-color: #25A5F7
+		}
+
+		.btn:hover {
+		  text-decoration: none
+		}
+
+		.input-item {
+		  position: relative;
+		  display: -ms-flexbox;
+		  display: flex;
+		  -ms-flex-wrap: wrap;
+		  flex-wrap: wrap;
+		  -ms-flex-align: center;
+		  align-items: center;
+		  width: 100%;
+		  height: 25rem;
+		}
+
+		.input-item:last-child {
+		  margin-bottom: 0;
+		}
+
+		.input-item>select, .input-item>input[type=text], .input-item>input[type=date] {
+		  position: relative;
+		  -ms-flex: 1 1 auto;
+		  flex: 1 1 auto;
+		  width: 1%;
+		  margin-bottom: 0;
+		}
+
+		.input-item>select:not(:last-child), .input-item>input[type=text]:not(:last-child), .input-item>input[type=date]:not(:last-child) {
+		  border-top-right-radius: 0;
+		  border-bottom-right-radius: 0
+		}
+
+		.input-item>select:not(:first-child), .input-item>input[type=text]:not(:first-child), .input-item>input[type=date]:not(:first-child) {
+		  border-top-left-radius: 0;
+		  border-bottom-left-radius: 0
+		}
+
+		.input-item-prepend {
+		  margin-right: -1px;
+		}
+
+		.input-item-text, input[type=text],input[type=date], select {
+		  height: calc(2rem + 1px);
+		}
+
+		.input-item-text {
+		  width: 100%;
+		  text-align: justify;
+		  padding: 0.4rem 0.7rem;
+		  display: inline-block;
+		  text-justify: distribute-all-lines;
+		  /*ie6-8*/
+		  text-align-last: justify;
+		  /* ie9*/
+		  -moz-text-align-last: justify;
+		  /*ff*/
+		  -webkit-text-align-last: justify;
+		  /*chrome 20+*/
+		  -ms-flex-align: center;
+		  align-items: center;
+		  margin-bottom: 0;
+		  font-size: 1rem;
+		  font-weight: 400;
+		  line-height: 1.5;
+		  color: #495057;
+		  text-align: center;
+		  white-space: nowrap;
+		  background-color: #e9ecef;
+		  border: 1px solid #ced4da;
+		  border-radius: .25rem;
+		  border-bottom-right-radius: 0;
+		  border-top-right-radius: 0;
+		}
+
+		.input-item-text input[type=checkbox], .input-item-text input[type=radio] {
+		  margin-top: 0
+		}
+
+		.input-card {
+		  display: flex;
+		  flex-direction: column;
+		  min-width: 0;
+		  word-wrap: break-word;
+		  background-color: #fff;
+		  background-clip: border-box;
+		  border-radius: .25rem;
+		  width: 22rem;
+		  border-width: 0;
+		  border-radius: 0.4rem;
+		  box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+		  position: fixed;
+		  bottom: 1rem;
+		  right: 1rem;
+		  -ms-flex: 1 1 auto;
+		  flex: 1 1 auto;
+		  padding: 0.75rem 1.25rem;
+		}
+
+		.input-text {
+		  line-height: 2rem;
+		  margin-right: 2rem;
+		}
+
+		.info hr {
+		  margin-right: 0;
+		  margin-left: 0;
+		  border-top-color: grey;
+		}
+
+		.info {
+		  padding: .75rem 1.25rem;
+		  margin-bottom: 1rem;
+		  border-radius: .25rem;
+		  position: fixed;
+		  top: 1rem;
+		  background-color: white;
+		  width: auto;
+		  min-width: 22rem;
+		  border-width: 0;
+		  right: 1rem;
+		  box-shadow: 0 2px 6px 0 rgba(114, 124, 245, .5);
+		}
+
+		.code {
+		  left: 1.5rem;
+		  right: 1.5rem;
+		  top: 1.5rem;
+		  bottom: 1.5rem;
+		  overflow: auto;
+		  margin-bottom: 0rem;
+		}
+
+		.code .btn {
+		  top: 10rem;
+		  position: absolute;
+		  right: 1rem;
+		}
+
+		.code .result {
+		  border: 1px solid rgba(0, 0, 0, 0.1);
+		  border-radius: 0.5rem;
+		  padding: 1rem;
+		  bottom: 1rem;
+		  position: absolute;
+		  top: 5.5rem;
+		  right: 1rem;
+		  left: 1rem;
+		  overflow: auto;
+		}
+
+		.code .status {
+		  color: #80adff;
+		  display: inline-block;
+		  font-size: 14px;
+		}
+
+		.code h4 {
+		  display: inline-block;
+		  max-width: 20rem;
+		  margin-right: 1rem;
+		  margin-bottom: 1rem;
+		}
+
+		select, input[type=text], input[type=date] {
+		  display: inline-block;
+		  width: 100%;
+		  padding: .375rem 1.75rem .375rem .75rem;
+		  line-height: 1.5;
+		  color: #495057;
+		  vertical-align: middle;
+		  background: #fff url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right .75rem center;
+		  background-size: 8px 10px;
+		  border: 1px solid #ced4da;
+		  border-radius: .25rem;
+		  -webkit-appearance: none;
+		  -moz-appearance: none;
+		  appearance: none
+		}
+
+		input[type=text],input[type=date] {
+		  background: #fff;
+		  padding: .375rem .75rem;
+		}
+
+		select:focus, input[type=text]:focus, input[type=date]:focus {
+		  border-color: #80bdff;
+		  outline: 0;
+		  box-shadow: 0 0 0 .1rem rgba(128, 189, 255, .1)
+		}
+
+		.btn:focus {
+		  outline: 0;
+		  box-shadow: none;
+		}
+
+		select:focus::-ms-value, input[type=text]:focus::-ms-value,input[type=date]:focus::-ms-value {
+		  color: #495057;
+		  background-color: #fff
+		}
+
+
+		/* native toastr */
+		.native-toast {
+		  position: fixed;
+		  background-color: rgba(50, 50, 50, .8);
+		  border-radius: 33px;
+		  color: white;
+		  left: 50%;
+		  text-align: center;
+		  padding: 6px 12px;
+		  opacity: 0;
+		  z-index: 99999;
+		  transition: transform .25s, opacity .25s, top .25s;
+		  box-sizing: border-box;
+		}
+
+		.native-toast-bottom {
+		  bottom: 50px;
+		  -ms-transform: translateX(-50%) translateY(50px);
+			  transform: translateX(-50%) translateY(50px)
+		}
+
+		.native-toast-bottom.native-toast-shown {
+		  opacity: 1;
+		  -ms-transform: translateX(-50%) translateY(0);
+			  transform: translateX(-50%) translateY(0);
+		}
+
+		.native-toast-bottom.native-toast-edge {
+		  bottom: 0;
+		}
+
+		.native-toast-top {
+		  top: 50px;
+		  -ms-transform: translateX(-50%) translateY(-50px);
+			  transform: translateX(-50%) translateY(-50px)
+		}
+
+		.native-toast-top.native-toast-shown {
+		  opacity: 1;
+		  -ms-transform: translateX(-50%) translateY(0);
+			  transform: translateX(-50%) translateY(0);
+		}
+
+		.native-toast-top.native-toast-edge {
+		  top: 0;
+		}
+
+		.native-toast-center {
+		  top: 0;
+		  -ms-transform: translateX(-50%) translateY(-50px);
+			  transform: translateX(-50%) translateY(-50px)
+		}
+
+		.native-toast-center.native-toast-shown {
+		  opacity: 1;
+		  top: 50%;
+		  -ms-transform: translateX(-50%) translateY(-50%);
+			  transform: translateX(-50%) translateY(-50%);
+		}
+
+		.native-toast-edge {
+		  border-radius: 0;
+		  width: 100%;
+		  text-align: left;
+		}
+
+		@media screen and (min-width: 40rem) {
+		  .native-toast:not(.native-toast-edge) {
+			max-width: 18rem;
+		  }
+		}
+
+		/*
+		  max-width does not seem to work in small screen?
+		*/
+
+		/*@media screen and (max-width: 768px) {
+		  .native-toast:not(.native-toast-edge) {
+			max-width: 400px;
+		  }
+		}
+
+		@media screen and (max-width: 468px) {
+		  .native-toast:not(.native-toast-edge) {
+			max-width: 300px;
+		  }
+		}*/
+
+		/* types */
+
+		.native-toast-error {
+		  background-color: #d92727;
+		  color: white;
+		}
+
+		.native-toast-success {
+		  background-color: #62a465;
+		  color: white;
+		}
+
+		.native-toast-warning {
+		  background-color: #fdaf17;
+		  color: white;
+		}
+
+		.native-toast-info {
+		  background-color: #5060ba;
+		  color: white;
+		}
+
+		[class^="native-toast-icon-"] {
+		  vertical-align: middle;
+		  margin-right: 8px
+		}
+
+		[class^="native-toast-icon-"] svg {
+		  width: 16px;
+		  height: 16px;
+		}
     </style>
 </head>
 <body>
 <div id="container"></div>
+<div class="input-card" style='width:36rem;height:30rem;'>
+    <label style='color:grey'>公交线路查询</label>
+    <div class="input-item">
+            <div class="input-item-prepend" style='width:100%;'><span class="input-item-text" >城市公交</span></div>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="1" />1&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="2" />2&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="2路支线" />2支&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="3" />3&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="5" />5&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="6" />6&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="7" />7&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="8" />8&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="9" />9&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="9路支线" />9支&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="10" />10&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="11" />11&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="12" />12&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="15" />15&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="16" />16&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="17" />17&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="18" />18&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="19" />19&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="20" />20&nbsp;</label>  
+			<label><input id="BusLineName" type="checkbox" name="bid" value="21" />21&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="21路支" />21支&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="22" />22&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="23" />23&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="25" />25&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="26" />26&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="27" />27&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="29" />29&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="30" />30&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="31" />31&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="33" />33&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="35" />35&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="37" />37&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="91" />91&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="92" />92&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="93" />93&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="96" />95&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="97" />97&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="99" />99&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="918" />918&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="922" />922&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="933" />933&nbsp;</label> 
+            <div class="input-item-prepend" style='width:100%;'><span class="input-item-text" >城乡公交</span></div>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="101" />101&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="103" />103&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="105" />105&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="106" />106&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="107" />107&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="108" />108&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="109" />109&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="113" />113&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="123" />123&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="128" />128&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="130" />130&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="131" />131&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="181" />181&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="187" />187&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="188" />188&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="198" />198&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="202" />202&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="203" />203&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="205" />205&nbsp;</label>  
+			<label><input id="BusLineName" type="checkbox" name="bid" value="206" />206&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="208" />208&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="210" />210&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="212" />212&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="216" />216&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="218" />218&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="220" />220&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="222" />222&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="225" />225&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="301" />301&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="302" />302&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="305" />305&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="306" />306&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="307" />307&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="308" />308&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="309" />309&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="310" />310&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="311" />311&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="312" />312&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="313" />313&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="316路东线" />316东&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="316路西线" />316西&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="317" />317&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="318" />318&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="322" />322&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="324" />324&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="325" />325&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="328" />328&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="330" />330&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="529" />529&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="529路区间" />529区间&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="530" />530&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="531" />531&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="534" />534&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid" value="868路/K868路" />868长安&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="868路/K868路区间" />868区间&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="868路/K868路(学院线)" />868学院线&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid" value="868路/868路专线" />868皮革城&nbsp;</label>
+			<label><input id="BusLineName" type="checkbox" name="bid2" value="海盐K178路" />海盐178&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid2" value="189路/K189路" />嘉兴189&nbsp;</label> 
+			<label><input id="BusLineName" type="checkbox" name="bid3" value="523路" />杭州523&nbsp;</label> 
+    </div>
+    <input id="search" type="button" class="btn" value="查询" />
+</div>
+
 <script type="text/javascript"
             src="https://webapi.amap.com/maps?v=1.4.11&key=1fe93698c8b25bd91836aebb27801b96&plugin=AMap.LineSearch"></script>
 <script language="javascript">
@@ -23,55 +563,126 @@
      * 2. 根据返回结果解析，输出解析结果(lineSearch_Callback)
      * 3. 在地图上绘制公交线路()
      */
+	 function removeDuplicatedItem(arr) {
+		for(var i = 0; i < arr.length-1; i++){
+			for(var j = i+1; j < arr.length; j++){
+				if(arr[i]==arr[j]){
+					arr.splice(j,1);//console.log(arr[j]);
+					j--;
+				}
+			}
+		}
+		return arr;
+	}
     var map = new AMap.Map("container", {
         resizeEnable: true,
         center: [120.6803,30.5115],//地图中心点
-        zoom: 13, //地图显示的缩放级别
-		//mapStyle: 'amap://styles/ee7d271c0993fd10be7421b8d3f81506'
+        zoom: 13 //地图显示的缩放级别
     });
     var linesearch;
-	var n = new Array("1","2","2路支线","3","5","6","7","8","9","9路支线","10","11","12","15","16","17","18","19","20","21","21路支","22","23","25","26","27","29","30","31","33","35","37","91","92","93","96","97","99","918","922","933","101","103","105","106","107","108","109","113","123","128","130","131","181","187","188","198","202","203","205","206","208","210","212","216","218","220","222","225","301","302","305","306","307","308","309","310","311","312","313","316路东线","316路西线","317","318","326","322","324","325","328","330","529","529路区间","530","531","534","868路/K868路","868路/K868路区间","868路/K868路(学院线)","868路/868路专线");
     /*公交线路查询*/
-    function lineSearch(l) {
+    function lineSearch() {
+		check_val = [];
+		map.clearMap()
+		obj = document.getElementsByName("bid");
+		for(i in obj){
+			if(obj[i].checked){
+				check_val.unshift(obj[i].value);
+				}
+			}	
+		for(k in obj){
+			if(obj[k].checked)
+				check_val.push(obj[k].value);
+		}
         //实例化公交线路查询类，只取回一条路线
         if(!linesearch){
             linesearch = new AMap.LineSearch({
                 pageIndex: 1,
                 city: '嘉兴',
-                pageSize: 100,
+                pageSize: 1,
                 extensions: 'all'
             });
         }
-
-        linesearch.search(l, function(status, result) {
-            //map.clearMap()
-            if (status === 'complete' && result.info === 'OK') {
-                lineSearch_Callback(result);
-            } else {
-                alert(result);
-            }
-        });
+        //搜索相关公交线路
+		for(busLineName in check_val){
+		check_val = removeDuplicatedItem(check_val);	
+			linesearch.search('海宁'+check_val[busLineName], function(status, result) {
+				if (status === 'complete' && result.info === 'OK') {
+					lineSearch_Callback(result);
+				} else {
+					alert(result);
+				}
+			});
+		}
     }
-    function lineSearch2(l) {
+	function lineSearch2() {
+		check_val = [];
+		map.clearMap()
+		obj = document.getElementsByName("bid2");
+		for(i in obj){
+			if(obj[i].checked){
+				check_val.unshift(obj[i].value);
+				}
+			}	
+		for(k in obj){
+			if(obj[k].checked)
+				check_val.push(obj[k].value);
+		}
+        //实例化公交线路查询类，只取回一条路线
+        if(!linesearch){
+            linesearch = new AMap.LineSearch({
+                pageIndex: 1,
+                city: '嘉兴',
+                pageSize: 1,
+                extensions: 'all'
+            });
+        }
+        //搜索相关公交线路
+		for(busLineName in check_val){
+		check_val = removeDuplicatedItem(check_val);	
+			linesearch.search(check_val[busLineName], function(status, result) {
+				if (status === 'complete' && result.info === 'OK') {
+					lineSearch_Callback(result);
+				} else {
+					alert(result);
+				}
+			});
+		}
+    }
+	function lineSearch3() {
+		check_val = [];
+		map.clearMap()
+		obj = document.getElementsByName("bid3");
+		for(i in obj){
+			if(obj[i].checked){
+				check_val.unshift(obj[i].value);
+				}
+			}	
+		for(k in obj){
+			if(obj[k].checked)
+				check_val.push(obj[k].value);
+		}
         //实例化公交线路查询类，只取回一条路线
         if(!linesearch){
             linesearch = new AMap.LineSearch({
                 pageIndex: 1,
                 city: '杭州',
-                pageSize: 100,
+                pageSize: 1,
                 extensions: 'all'
             });
         }
-
-        linesearch.search(l, function(status, result) {
-            //map.clearMap()
-            if (status === 'complete' && result.info === 'OK') {
-                lineSearch_Callback(result);
-            } else {
-                alert(result);
-            }
-        });
-    }	
+        //搜索相关公交线路
+		for(busLineName in check_val){
+		check_val = removeDuplicatedItem(check_val);	
+			linesearch.search(check_val[busLineName], function(status, result) {
+				if (status === 'complete' && result.info === 'OK') {
+					lineSearch_Callback(result);
+				} else {
+					alert(result);
+				}
+			});
+		}
+    }
     /*公交路线查询服务返回数据解析概况*/
     function lineSearch_Callback(data) {
         var lineArr = data.lineInfo;
@@ -83,7 +694,7 @@
                 var stops = lineArr[i].via_stops;
                 var startPot = stops[0].location;
                 var endPot = stops[stops.length - 1].location;
-                if (i < 5)
+                if (i == 0) //作为示例，只绘制一条线路
                 drawbusLine(startPot, endPot, pathArr);
             
             }
@@ -120,19 +731,19 @@
             path: BusArr,
             
             strokeColor: str,//线颜色
-            strokeOpacity: 0.8,//线透明度
+            strokeOpacity: 0.85,//线透明度
             isOutline:true,
             outlineColor:'white',
             strokeWeight: 4//线宽
         });
         map.setFitView();
     }
-	for (var i = 1; i <= 98; i++) {
-		lineSearch('海宁'+n[i]);
-		}
-	lineSearch('海盐K178路');
-	lineSearch('189路/K189路');
-	lineSearch2('523路');
+	function run() {
+		lineSearch();
+		lineSearch2();
+		lineSearch3();
+	}
+	document.getElementById('search').onclick = run;
 </script>
 </body>
 </html>
