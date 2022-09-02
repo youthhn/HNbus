@@ -537,8 +537,9 @@
 </head>
 <body>
 <div id='container'></div>
-<script type="text/javascript"
-            src="https://webapi.amap.com/maps?v=1.4.11&key=1fe93698c8b25bd91836aebb27801b96&plugin=AMap.LineSearch"></script>
+
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.11&key=1fe93698c8b25bd91836aebb27801b96&plugin=AMap.LineSearch,AMap.DistrictSearch"></script>
+
 <script language="javascript">
     /*
      * 主要流程分为三个步骤
@@ -567,7 +568,7 @@
 					document.write("<label><input id='bln' type='checkbox' name='bid' value='101' />101&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='103' />103&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='105' />105&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='106' />106&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='107' />107&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='108' />108&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='109' />109&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='113' />113&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='123' />123&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='128' />128&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='130' />130&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='131' />131&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='181' />181&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='187' />187&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid2' value='189路/K189路' />189&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='198' />198&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='202' />202&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='203' />203&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='205' />205&nbsp;</label> <label><input id='bln' type='checkbox' name='bid' value='206' />206&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='208' />208&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='210' />210&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='212' />212&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='216' />216&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='218' />218&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='220' />220&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='222' />222&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='225' />225&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='301' />301&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='302' />302&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='305' />305&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='306' />306&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='307' />307&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='308' />308&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='309' />309&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='310' />310&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='311' />311&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='312' />312&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='313' />313&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='316路东线' />316东&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='316路西线' />316西&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='317' />317&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='318' />318&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='319' />319&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='320' />320&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='322' />322&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='324' />324&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='325' />325&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='326' />326&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='330' />330&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='331' />331&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='332' />332&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='388' />388&nbsp;</label>");
 					document.write("&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='临平-盐仓专线' />临盐线&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='530' />临长线1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='531' />临长线2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='九堡-长安专线' />九长线&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='868路/K868路区间' />下盐线&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='868路/K868路(学院线)' />财长线&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='868路/868路专线' />下皮线&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid2' value='海盐K178路' />海盐178&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid2' value='海盐K222路' />海盐222&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid2' value='桐乡329路' />桐乡329&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid3' value='492路' />杭州492&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid3' value='523路' />艮盐线&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid3' value='3101路' />杭州3101&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid3' value='3148路' />杭州3148&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid3' value='3185路' />杭州3185&nbsp;</label>");
 					document.write("<div class='input-item-prepend' style='width:100%;'><span class='input-item-text' >&nbsp;&nbsp;社区巴士&nbsp;&nbsp;</span></div><br><br>");
-					document.write("<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士1号线' />长安1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士2号线' />长安2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士4号线' />长安4&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士5号线' />长安5&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='社区巴士盐仓1号线' />盐仓1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐仓社区巴士2号线' />盐仓2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐仓社区巴士2B号线' />盐仓2B&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐仓社区巴士3号线' />盐仓3&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='高新区社区巴士5号线' />盐仓5A&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='高新区社区巴士5号线支线' />盐仓5B&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士1号线' />许村1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士2号线' />许村2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士3号线' />许村3&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士4号线' />许村4&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士5号线' />许村5&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士Y1号线' />许村Y1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士1号线' />袁花1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士2号线' />袁花2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士3号线' />袁花3&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士4号线' />袁花4&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='尖山社区巴士1号线' />尖山1&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='尖山社区巴士6号线' />尖山6&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='尖山社区巴士7号线' />尖山7&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐官社区巴士1号线' />盐官1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='周王庙社区巴士1号线' />周王庙1&nbsp;</label>");
+					document.write("<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士1号线' />长安1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士2号线' />长安2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士4号线' />长安4&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='长安社区巴士5号线' />长安5&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='社区巴士盐仓1号线' />盐仓1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐仓社区巴士2号线' />盐仓2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐仓社区巴士2B号线' />盐仓2B&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐仓社区巴士3号线' />盐仓3&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='高新区社区巴士5号线' />盐仓5&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='高新区社区巴士5号线支线' />盐仓5支&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士1号线' />许村1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士2号线' />许村2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士3号线' />许村3&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士4号线' />许村4&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士5号线' />许村5&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='许村社区巴士Y1号线' />许村Y1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士1号线' />袁花1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士2号线' />袁花2&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士3号线' />袁花3&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='袁花社区巴士4号线' />袁花4&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='尖山社区巴士1号线' />尖山1&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='尖山社区巴士6号线' />尖山6&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='尖山社区巴士7号线' />尖山7&nbsp;</label>&nbsp;&nbsp;&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='盐官社区巴士1号线' />盐官1&nbsp;</label>&nbsp;&nbsp;<label><input id='bln' type='checkbox' name='bid' value='周王庙社区巴士1号线' />周王庙1&nbsp;</label>");
 					document.write("&nbsp;&nbsp;<div class='input-item-prepend' style='width:100%;'><span class='input-item-text' >&nbsp;&nbsp;轨道交通&nbsp;&nbsp;</span></div><br><br><label><input id='bln' type='checkbox' name='bid3' value='杭海城际铁路' />杭海城际&nbsp;</label></div>");
 					document.write("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><input id='search' type='button' class='btn' value='查询' /></div>");
 					
@@ -592,6 +593,44 @@
         center: [120.6803,30.5115],//地图中心点
         zoom: 13 //地图显示的缩放级别
     });
+	var district = null;
+    var polygon;
+    function drawBounds() {
+        //加载行政区划插件
+        if(!district){
+            //实例化DistrictSearch
+            var opts = {
+                subdistrict: 0,   //获取边界不需要返回下级行政区
+                extensions: 'all',  //返回行政区边界坐标组等具体信息
+                level: 'district'  //查询行政级别为 市
+            };
+            district = new AMap.DistrictSearch(opts);
+        }
+        //行政区查询
+        district.setLevel('district')
+        district.search('海宁市', function(status, result) {
+            if(polygon){
+              map.remove(polygon)//清除上次结果
+          	  polygon  = null;
+            }
+            var bounds = result.districtList[0].boundaries;
+            if (bounds) {
+              //生成行政区划polygon
+              for(var i=0;i<bounds.length;i+=1){//构造MultiPolygon的path
+                bounds[i] = [bounds[i]]
+              }
+              polygon = new AMap.Polygon({
+                strokeWeight: 1,
+                path: bounds,
+                fillOpacity: 0.4,
+                fillColor: '#80d8ff',
+                strokeColor: '#0091ea'
+              });
+              map.add(polygon)
+            }
+        });
+    }
+    drawBounds();
     var linesearch;
     /*公交线路查询*/
     function lineSearch() {
@@ -600,7 +639,7 @@
 			busln = document.getElementById('BusLineName').value;
 		}
 		check_val = [];
-		map.clearMap()
+		//map.clearMap()
 		if(document.getElementsByName("bid")){
 			obj = document.getElementsByName("bid");
 			for(i in obj){
@@ -784,7 +823,6 @@
 
     /*绘制路线*/
     function drawbusLine(startPot, endPot, BusArr) {
-
         //绘制乘车的路线
         busPolyline = new AMap.Polyline({
             map: map,
@@ -799,6 +837,7 @@
         map.setFitView();
     }
 	function run() {
+		drawBounds();
 		lineSearch();
 		lineSearch2();
 		lineSearch3();
